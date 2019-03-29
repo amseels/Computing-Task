@@ -14,21 +14,21 @@ int dist[100][100];
 bool masukPath[100];
 vector<int> ansPath;
 int ans=1000;
-
+int n;
 void visit(vector<int> path, int now){ // path : rute sampai saat ini, now : node sekarang
 
 	path.pb(now); // node now dimasukan ke rute
 
-	if (now==akhir){ //sampai tujuan
+	if (path.size()==n){ //semua kota udah di kunjungi
 
-		int totalDist=0; //jarak S-G menggunakan rute ini
+		int totalDist=0; //total jarak menggunakan rute ini
 		for (int i=1;i<path.size();i++){
 			int A = path[i];
 			int B = path[i-1];
 			totalDist+= ( dist[A][B] );
 		}
 
-		if (totalDist<ans){ //jika jarak S-G sekarang lebih kecil dari jawaban, maka jarak S-G sekaranglah jawabannya
+		if (totalDist<ans){ //jika total jarak sekarang lebih kecil dari jawaban, maka jarak total sekaranglah jawabannya
 			ans=totalDist;
 			ansPath=path;
 		}
@@ -54,7 +54,6 @@ void visit(vector<int> path, int now){ // path : rute sampai saat ini, now : nod
 
 int main (){
 	memset(masukPath, 0, sizeof(masukPath));
-	int n;
 	cin>>n;
 	for (int i=1;i<=n;i++){
 		char A, B;
